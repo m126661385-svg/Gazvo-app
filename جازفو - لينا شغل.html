@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جازفو - لينا شغل</title>
+    <!-- مكتبة الأيقونات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- مكتبة خط تاجوال العربي المميز -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #f5f2eb;
+            --primary-color: #581845;
+            --accent-color: #900C3F;
+            --accent-hover: #700931;
+            --text-color: #2c2c2c;
+            --card-bg: #ffffff;
+            --border-color: #e2d9cc;
+            --success-color: #2e7d32;
+            --warning-color: #d84315;
+            --shadow-sm: 0 2px 8px rgba(88, 24, 69, 0.06);
+            --shadow-md: 0 4px 14px rgba(88, 24, 69, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.2s ease-in-out;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #3d1030 100%);
+            color: #ffffff;
+            padding: 2.5rem 1rem 2rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        header .logo-icon {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            margin: 0.5rem auto 0;
+            font-size: 1.05rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* Main Grid */
+        .app-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        /* Card Styling */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-title {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.35rem;
+            font-weight: 700;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title i {
+            color: var(--accent-color);
+            margin-left: 0.5rem;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background-color: #faf8f5;
+            color: var(--text-color);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(144, 12, 63, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.85rem 1.75rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-small {
+            padding: 0.4rem 0.85rem;
+            font-size: 0.85rem;
+            border-radius: 6px;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1.5px solid var(--accent-color);
+        }
+
+        .btn-small:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-small.saved {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Filter Controls */
+        .filter-controls {
+            display: grid;
+            grid-template-columns: 2fr 1fr auto;
+            gap: 0.75rem;
+            margin-bottom: 1.2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .filter-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
+        }
+
+        /* Job List */
+        .job-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .job-card {
+            background: #faf8f5;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .job-card:hover {
+            border-color: var(--accent-color);
+            background: #ffffff;
+        }
+
+        .job-details h3 {
+            margin: 0 0 0.4rem 0;
+            color: var(--primary-color);
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .job-details p {
+            margin: 0 0 0.75rem 0;
+            font-size: 0.95rem;
+            color: #444;
+            white-space: pre-line;
+        }
+
+        .job-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: #efe8dc;
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .job-date {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .job-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: flex-end;
+        }
+
+        .delete-btn {
+            color: #aa2e25;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0.2rem 0.4rem;
+            opacity: 0.7;
+        }
+
+        .delete-btn:hover {
+            opacity: 1;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: #777;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Toast Notifications */
+        #toast-container {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            pointer-events: none;
+        }
+
+        .toast {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 0.85rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-right: 4px solid var(--accent-color);
+            animation: slideUp 0.3s forwards, fadeOut 0.3s 2.7s forwards;
+            pointer-events: auto;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #eae5da;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر الشريطي العلوي -->
+    <header>
+        <div class="logo-icon"><i class="fa-solid fa-briefcase"></i></div>
+        <h1>جازفو - لينا شغل</h1>
+        <p>منصتك التفاعلية الموثوقة للربط المهني وتوفير أفضل الفرص في جميع القطاعات</p>
+    </header>
+
+    <div class="container">
+        <div class="app-grid">
+            
+            <!-- نموذج إضافة فرصة عمل جديد -->
+            <div class="card">
+                <div class="card-title">
+                    <span><i class="fa-solid fa-plus-circle"></i> إضافة فرصة عمل جديدة</span>
+                </div>
+                <form id="jobForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="jobTitle">المسمى الوظيفي *</label>
+                            <input type="text" id="jobTitle" required placeholder="مثال: مسؤول مستودع، مستشار قانوني..." maxlength="80">
+                        </div>
+                        <div class="form-group">
+                            <label for="jobCategory">القطاع / المجال *</label>
+                            <select id="jobCategory" required>
+                                <option value="الإدارة واللوجستيات">الإدارة واللوجستيات</option>
+                                <option value="القانون والاستشارات">القانون والاستشارات</option>
+                                <option value="الأمن السيبراني">الأمن السيبراني</option>
+                                <option value="الخدمات الفنية والمهنية">الخدمات الفنية والمهنية</option>
+                                <option value="تقنية المعلومات">تقنية المعلومات</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobDescription">وصف الوظيفة والمتطلبات *</label>
+                        <textarea id="jobDescription" rows="3" required placeholder="اكتب تفاصيل الفرصة، الخبرات المطلوبة، وطريقة التواصل..." maxlength="600"></textarea>
+                    </div>
+                    <button type="submit" class="btn">
+                        <i class="fa-solid fa-paper-plane"></i> نشر الوظيفة الآن
+                    </button>
+                </form>
+            </div>
+
+            <!-- قسم البحث والتصفية والعرض -->
+            <div class="card">
+                <div class="card-title">
+                    <span><i class="fa-solid fa-list-check"></i> الفرص المهنية المتاحة</span>
+                    <span id="jobCount" class="badge">0 وظيفة</span>
+                </div>
+
+                <!-- أزرار التبديل بين الكل والمفضلة -->
+                <div class="tab-buttons">
+                    <button class="tab-btn active" id="tabAll" onclick="switchTab('all')">
+                        <i class="fa-solid fa-globe"></i> جميع الوظائف
+                    </button>
+                    <button class="tab-btn" id="tabSaved" onclick="switchTab('saved')">
+                        <i class="fa-solid fa-bookmark"></i> المحفوظات (<span id="savedCount">0</span>)
+                    </button>
+                </div>
+
+                <!-- أدوات التصفية والبحث -->
+                <div class="filter-controls">
+                    <input type="text" id="searchInput" placeholder="ابحث بالكلمات المفتاحية...">
+                    <select id="filterCategory">
+                        <option value="الكل">كل القطاعات</option>
+                        <option value="الإدارة واللوجستيات">الإدارة واللوجستيات</option>
+                        <option value="القانون والاستشارات">القانون والاستشارات</option>
+                        <option value="الأمن السيبراني">الأمن السيبراني</option>
+                        <option value="الخدمات الفنية والمهنية">الخدمات الفنية والمهنية</option>
+                        <option value="تقنية المعلومات">تقنية المعلومات</option>
+                    </select>
+                    <button class="btn btn-small" onclick="resetFilters()">إعادة ضبط</button>
+                </div>
+
+                <!-- قائمة عرض الوظائف -->
+                <ul class="job-list" id="jobList">
+                    <!-- يتم التحميل هنا عبر JavaScript -->
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- حاوية التنبيهات الإشعارية (Toast Notifications) -->
+    <div id="toast-container"></div>
+
+    <footer>
+        حقوق الطبع محفوظة &copy; 2026 - منصة <strong>جازفو - لينا شغل</strong> | حماية وأمان البيانات
+    </footer>
+
+    <script>
+        // --- 1. أمان وتطهير المدخلات (Input Sanitization ضد XSS) ---
+        function sanitizeHTML(str) {
+            const temp = document.createElement('div');
+            temp.textContent = str;
+            return temp.innerHTML;
+        }
+
+        // --- 2. البيانات المبدئية والتخزين المحلي (LocalStorage) ---
+        const defaultJobs = [
+            {
+                id: 1672531199000,
+                title: 'مسؤول مستودع وسلسلة الإمداد',
+                category: 'الإدارة واللوجستيات',
+                description: 'مطلوب مسؤول مستودعات لإدارة جرد المخزون، تنظيم الشحنات الصادرة والواردة، وتدقيق السجلات اللوجستية.',
+                saved: false,
+                date: 'منذ يومين'
+            },
+            {
+                id: 1672531200000,
+                title: 'مستشار قانوني وعقود تجارية',
+                category: 'القانون والاستشارات',
+                description: 'خبرة في صياغة العقود التجارية، تقديم الاستشارات النظامية، والتحكيم في النزاعات العمالية والتجارية.',
+                saved: true,
+                date: 'منذ 3 أيام'
+            },
+            {
+                id: 1672531201000,
+                title: 'مهندس أمن سيبراني واختبار اختراق',
+                category: 'الأمن السيبراني',
+                description: 'مطلوب متخصص في تقييم الثغرات الأمنية، حماية شبكات المنشأة، وتطبيق بروتوكولات الأمان والمعايير الدولية.',
+                saved: false,
+                date: 'منذ 5 أيام'
+            }
+        ];
+
+        let jobs = JSON.parse(localStorage.getItem('gazvo_jobs_data')) || defaultJobs;
+        let currentTab = 'all';
+
+        // --- 3. نظام الإشعارات والتنبيهات (Toast System) ---
+        function showToast(message, icon = 'fa-circle-check') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${sanitizeHTML(message)}</span>`;
+            
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // --- 4. حفظ البيانات وإدارتها ---
+        function saveToStorage() {
+            localStorage.setItem('gazvo_jobs_data', JSON.stringify(jobs));
+            updateSavedCount();
+        }
+
+        function updateSavedCount() {
+            const count = jobs.filter(j => j.saved).length;
+            document.getElementById('savedCount').textContent = count;
+        }
+
+        // --- 5. عرض الوظائف وتصفيتها ---
+        function renderJobs() {
+            const jobList = document.getElementById('jobList');
+            const jobCount = document.getElementById('jobCount');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const selectedCategory = document.getElementById('filterCategory').value;
+
+            jobList.innerHTML = '';
+
+            // الفلترة والتصفية
+            const filteredJobs = jobs.filter(job => {
+                const matchesSearch = job.title.toLowerCase().includes(searchTerm) || job.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = (selectedCategory === 'الكل') || (job.category === selectedCategory);
+                const matchesTab = (currentTab === 'all') || (currentTab === 'saved' && job.saved);
+                
+                return matchesSearch && matchesCategory && matchesTab;
+            });
+
+            jobCount.textContent = `${filteredJobs.length} وظيفة`;
+
+            if (filteredJobs.length === 0) {
+                jobList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <p>لا توجد فرص عمل مطابقة للبحث حالياً.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredJobs.forEach(job => {
+                const li = document.createElement('li');
+                li.className = 'job-card';
+
+                // تطهير النصوص قبل عرضها لحماية التطبيق
+                const title = sanitizeHTML(job.title);
+                const category = sanitizeHTML(job.category);
+                const description = sanitizeHTML(job.description);
+
+                li.innerHTML = `
+                    <div class="job-details">
+                        <h3>${title}</h3>
+                        <p>${description}</p>
+                        <div class="job-meta">
+                            <span class="badge"><i class="fa-solid fa-tag"></i> ${category}</span>
+                            <span class="job-date"><i class="fa-regular fa-clock"></i> ${job.date || 'حديثاً'}</span>
+                        </div>
+                    </div>
+                    <div class="job-actions">
+                        <button class="btn-small ${job.saved ? 'saved' : ''}" onclick="toggleBookmark(${job.id})">
+                            <i class="fa-${job.saved ? 'solid' : 'regular'} fa-bookmark"></i> ${job.saved ? 'محفوظة' : 'حفظ'}
+                        </button>
+                        <button class="delete-btn" onclick="deleteJob(${job.id})" title="حذف الوظيفة">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                `;
+                jobList.appendChild(li);
+            });
+        }
+
+        // --- 6. الإجراءات التفاعلية ---
+        
+        // التبديل بين حفظ وإلغاء حفظ الفرصة
+        window.toggleBookmark = function(id) {
+            jobs = jobs.map(job => {
+                if (job.id === id) {
+                    const newStatus = !job.saved;
+                    showToast(
+                        newStatus ? 'تمت إضافة الوظيفة إلى المحفوظات' : 'تمت إزالة الوظيفة من المحفوظات',
+                        newStatus ? 'fa-bookmark' : 'fa-circle-info'
+                    );
+                    return { ...job, saved: newStatus };
+                }
+                return job;
+            });
+            saveToStorage();
+            renderJobs();
+        };
+
+        // حذف فرصة عمل
+        window.deleteJob = function(id) {
+            jobs = jobs.filter(job => job.id !== id);
+            saveToStorage();
+            renderJobs();
+            showToast('تم حذف فرصة العمل بنجاح', 'fa-trash-can');
+        };
+
+        // التبديل بين التبويبات
+        window.switchTab = function(tab) {
+            currentTab = tab;
+            document.getElementById('tabAll').classList.toggle('active', tab === 'all');
+            document.getElementById('tabSaved').classList.toggle('active', tab === 'saved');
+            renderJobs();
+        };
+
+        // إعادة ضبط الفلاتر
+        window.resetFilters = function() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('filterCategory').value = 'الكل';
+            renderJobs();
+        };
+
+        // إضافة وظيفة جديدة عبر النموذج
+        document.getElementById('jobForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const titleInput = document.getElementById('jobTitle');
+            const categoryInput = document.getElementById('jobCategory');
+            const descriptionInput = document.getElementById('jobDescription');
+
+            const title = titleInput.value.trim();
+            const category = categoryInput.value;
+            const description = descriptionInput.value.trim();
+
+            if (!title || !description) {
+                showToast('يرجى تعبئة جميع الحقول المطلوبة', 'fa-triangle-exclamation');
+                return;
+            }
+
+            const newJob = {
+                id: Date.now(),
+                title: title,
+                category: category,
+                description: description,
+                saved: false,
+                date: 'الآن'
+            };
+
+            jobs.unshift(newJob);
+            saveToStorage();
+            renderJobs();
+
+            // إعادة ضبط النموذج والتنبيه
+            this.reset();
+            showToast('تم نشر فرصة العمل بنجاح!', 'fa-circle-check');
+        });
+
+        // الاستماع لإدخالات التصفية الحية
+        document.getElementById('searchInput').addEventListener('input', renderJobs);
+        document.getElementById('filterCategory').addEventListener('change', renderJobs);
+
+        // التشغيل الأولي
+        updateSavedCount();
+        renderJobs();
+    </script>
+</body>
+</html>
